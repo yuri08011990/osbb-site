@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>OSBB Website</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Сторінка ОСББ</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-		    <div>
-		        <p>published: {{ post.published_date }}</p>
-		        <h1><a href="">{{ post.title }}</a></h1>
-		        <p>{{ post.text|linebreaksbr }}</p>
-		    </div>
-		{% endfor %}
-
-        <div>
-            <p>опубліковано: 27.06.2018, 20:07</p>
-            <h2><a href="">Другий запис</a></h2>
-            <p>Згідно норм Закону України «Про особливості здійснення права власності у багатоквартирному будинку», ОСББ є однією із форм управління багатоквартирним будинком. Створення та діяльність ОСББ регулюються нормами Закону України «Про об'єднання співвласників багатоквартирного будинку».</p>
-        </div>
-    </body>
-</html>
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			<div class="date">
+			    <p>опубліковано: {{ post.published_date }}</p>
+			</div>
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+			<p>{{ post.text|linebreaksbr }}</p>
+		</div>
+	{% endfor %}
+{% endblock %}
