@@ -3,7 +3,6 @@ from django.utils import timezone
 from .models import Post
 from .forms import PostForm
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from PIL import Image
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
